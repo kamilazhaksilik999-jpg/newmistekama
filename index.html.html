@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Asman Airlines — ближе к небу, ближе к дому</title>
+  <meta name="description" content="Asman Airlines — локальная авиакомпания. Флот, сотрудники, фотогалерея.">
+  <style>
+    :root{
+      --sky-1:#e6f7ff;
+      --sky-2:#cfeeff;
+      --accent:#1e88e5;
+      --deep:#003366;
+      --card:#ffffff;
+      --radius:12px;
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg,var(--sky-1), #f0fbff 60%);
+      color:var(--deep);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    header {
+      background: linear-gradient(90deg,var(--accent), #4da6ff);
+      padding: 16px 20px;
+      box-shadow: 0 6px 18px rgba(30,136,229,0.12);
+    }
+    nav {
+      max-width: var(--maxw);
+      margin: 0 auto;
+    }
+    .menu {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      padding: 0;
+      margin: 0;
+    }
+    .menu li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .menu li a:hover {
+      text-decoration: underline;
+    }
+    .menu .logo img {
+      height: 42px;
+      vertical-align: middle;
+    }
+
+    .container{max-width:var(--maxw);margin:28px auto;padding:0 18px;}
+
+    /* HERO */
+    .hero{
+      border-radius:14px;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      min-height:300px;
+      background-position:center;
+      background-size:cover;
+      position:relative;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.06);
+    }
+    .hero .overlay{
+      position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.06));
+    }
+    .hero .text{
+      position:relative;z-index:2;color:#fff;padding:36px;
+    }
+    .hero h1{margin:0;font-size:34px;line-height:1.05}
+    .hero p{margin-top:10px;color:rgba(255,255,255,0.92);max-width:760px}
+
+    /* Sections */
+    section{margin-top:36px;background:transparent}
+    h2{color:var(--accent);margin-bottom:12px}
+    .card{
+      background:var(--card);
+      border-radius:12px;padding:18px;
+      box-shadow:0 8px 20px rgba(2,6,23,0.04);
+      border:1px solid rgba(2,6,23,0.03);
+    }
+
+    /* Grid */
+    .two-col{display:grid;grid-template-columns: 1fr 360px;gap:20px;align-items:start}
+    @media (max-width:920px){ .two-col{grid-template-columns:1fr} .hero h1{font-size:28px} }
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:10px;cursor:pointer;transition:transform .18s}
+    .gallery img:hover{transform:scale(1.03)}
+
+    /* Staff */
+    .staff{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:12px}
+    .staff .person{text-align:center;padding:14px;border-radius:10px;background:var(--card);box-shadow:0 6px 18px rgba(2,6,23,0.04)}
+    .person img{width:120px;height:120px;object-fit:cover;border-radius:50%;display:block;margin:0 auto 10px;border:4px solid #f2fbff}
+
+    /* Contact */
+    .contact .meta{font-weight:700;color:var(--deep)}
+    .small{color:#3b5b7a;font-size:14px}
+
+    footer{margin-top:36px;padding:18px;text-align:center;color:#08406a;background:linear-gradient(180deg,#ecf9ff,#e6f7ff)}
+    
+    /* Lightbox */
+    .lightbox{
+      display:none;
+      position:fixed;inset:0;z-index:9999;
+      background:rgba(2,6,23,0.85);
+      align-items:center;justify-content:center;padding:24px;
+    }
+    .lightbox .wrap{max-width:1200px;width:100%;display:flex;gap:18px;align-items:center}
+    .lightbox img{max-width:calc(100% - 140px);max-height:85vh;border-radius:10px;box-shadow:0 18px 40px rgba(0,0,0,0.6)}
+    .lb-controls{width:120px;color:white;display:flex;flex-direction:column;align-items:center;gap:12px}
+    .lb-controls button{background:transparent;border:2px solid rgba(255,255,255,0.16);color:white;padding:8px 12px;border-radius:8px;cursor:pointer}
+    .lb-close{position:absolute;right:20px;top:18px;color:white;font-size:30px;cursor:pointer}
+
+    /* small helpers */
+    .muted{color:#4b6b86}
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Главное меню">
+      <ul class="menu">
+        <li class="logo">
+          <a href="#top">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Asman_Airlines_Logo.jpg" alt="Asman Airlines" />
+          </a>
+        </li>
+        <li><a href="#about">О компании</a></li>
+        <li><a href="#gallery">Галерея</a></li>
+        <li><a href="#staff">Сотрудники</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero card" id="top" style="background-image: url('https://economist.kg/content/images/2024/10/464980077_850912253869844_6875076909997121147_n-1.jpg')">
+      <div class="overlay" aria-hidden="true"></div>
+      <div class="text">
+        <h1>Asman — ближе к небу, ближе к дому</h1>
+        <p>Asman Airlines — национальный перевозчик, который соединяет города Кыргызстана, развивает внутренние и региональные линии и делает воздушные путешествия доступными и комфортными для жителей страны.</p>
+      </div>
+    </section>
+
+    <section id="about" style="margin-top:22px">
+      <div class="two-col">
+        <div class="card">
+          <h2>О компании</h2>
+          <p class="small">
+            Asman Airlines (Асман) — молодая авиакомпания Кыргызской Республики, созданная при участии Международного аэропорта Манас.
+            Компания начала операционные рейсы в 2024 году, специализируется на региональных маршрутках и в ближайшие годы планирует расширение флота и направлений. Флот компании включает современные турбовинтовые самолёты Bombardier/De Havilland Dash-8 Q400 для коротких маршрутов; в планах — расширение парка. 
+          </p>
+
+          <h3 style="margin-top:14px">Достижения и сервис</h3>
+          <ul class="small muted" style="line-height:1.6">
+            <li>Фокус на подключении регионов и восстановлении внутренних авиалиний.</li>
+            <li>Цифровые сервисы: мобильное приложение, онлайн-регистрация и удобный интерфейс бронирования.</li>
+            <li>Программы безопасности и обучения экипажей в сотрудничестве с международными провайдерами.</li>
+          </ul>
+
+          <p style="margin-top:12px" class="muted small"><strong>Источник данных и фото:</strong> официальный сайт Asman и публикации СМИ.</p>
+        </div>
+
+        <aside class="card">
+          <h3>Кратко</h3>
+          <p class="muted"><strong>Хаб:</strong> Manas International Airport (Bishkek)</p>
+          <p class="muted"><strong>Флот:</strong> Q400 (Dash-8), планы на расширение.</p>
+          <p class="muted"><strong>Сайт:</strong> <a href="https://asmanairlines.kg" target="_blank" rel="noopener">asmanairlines.kg</a></p>
+          <p style="margin-top:10px"><strong>Слоган:</strong> <em>«Asman — ближе к небу, ближе к дому»</em></p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+      <h2>Фотогалерея самолётов Asman</h2>
+      <div class="gallery card" aria-label="Галерея самолётов">
+        <img src="https://asmanairlines.kg/static/images/space_1/banner-1-desktop.webp" alt="Asman баннер" data-index="0">
+        <img src="https://economist.kg/content/images/2024/10/464980077_850912253869844_6875076909997121147_n-1.jpg" alt="Asman Dash-8 (ночное фото)" data-index="1">
+        <img src="https://economist.kg/content/images/2024/10/464930345_850912227203180_2000059474729178327_n.jpg" alt="Asman — торжественный прилёт" data-index="2">
+        <img src="https://economist.kg/content/images/2024/10/464952830_850912217203181_1245381411950996874_n.jpg" alt="Asman Dash-8 вид с хвоста" data-index="3">
+      </div>
+    </section>
+
+    <!-- Staff -->
+    <section id="staff">
+      <h2>Команда Asman</h2>
+      <div class="staff">
+        <div class="person">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Камила — менеджер по клиентскому сервису">
+          <h3>Камила Султанова</h3>
+          <p><strong>Менеджер по клиентскому сервису</strong><br>
+          8 лет в авиации: отвечает за работу колл-центра, обработку обращений клиентов, качество обслуживания на борту и на земле.</p>
+        </div>
+        <div class="person">
+          <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Жолдошбек — генеральный директор">
+          <h3>Жолдошбек Айдаралиев</h3>
+          <p><strong>Генеральный директор</strong><br>
+          Руководит стратегией компании, развитием маршрутной сети и взаимодействием с партнёрами и регуляторами.</p>
+        </div>
+        <div class="person">
+          <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Айша — старший бортпроводник">
+          <h3>Айша Осмонова</h3>
+          <p><strong>Старший бортпроводник</strong><br>
+          Координирует работу бортпроводников, отвечает за безопасность и комфорт пассажиров.</p>
+        </div>
+        <div class="person">
+          <img src="https://randomuser.me/api/portraits/men/61.jpg" alt="Рахим — главный инженер">
+          <h3>Рахим Токтосунов</h3>
+          <p><strong>Главный инженер</strong><br>
+          Следит за техническим состоянием флота, планирует обслуживание и взаимодействует с поставщиками.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacts -->
+    <section id="contact" style="margin-top:24px">
+      <div class="card">
+        <h2>Контакты</h2>
+        <p class="small muted">По любым вопросам — бронирование, служба поддержки и пресс-офис.</p>
+        <p><strong>Телефон:</strong> +996 (XXX) XX-XX-XX</p>
+        <p><strong>Контактное лицо:</strong> Камила Султанова</p>
+        <p><strong>Email:</strong> info@asmanairlines.kg</p>
+        <p class="muted small" style="margin-top:10px">Офис: Manas International Airport, Bishkek.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    ©️ Asman Airlines — демонстрационный сайт. Фото и новости взяты из открытых источников.
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-hidden="true" aria-label="Просмотр изображения">
+    <div class="lb-close" id="lbClose" aria-hidden="false" title="Закрыть">&times;</div>
+    <div class="wrap">
+      <div class="lb-controls" aria-hidden="false">
+        <button id="prevBtn" aria-label="Предыдущее">← Пред</button>
+        <div class="muted small" id="lbCounter">1 / 4</div>
+        <button id="nextBtn" aria-label="Следующее">След →</button>
+      </div>
+      <img id="lbImage" src="" alt="Просмотр фото">
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const imgEls = document.querySelectorAll('.gallery img');
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImage');
+      const lbClose = document.getElementById('lbClose');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const lbCounter = document.getElementById('lbCounter');
+
+      const images = Array.from(imgEls).map(i => i.src);
+      let idx = 0;
+
+      function openAt(i){
+        idx = (i + images.length) % images.length;
+        lbImg.src = images[idx];
+        lbCounter.textContent = (idx+1) + ' / ' + images.length;
+        lb.style.display = 'flex';
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLb(){
+        lb.style.display = 'none';
+        lb.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        lbImg.src = '';
+      }
+
+      imgEls.forEach((el,i)=>{
+        el.addEventListener('click', ()=> openAt(i) );
+        el.addEventListener('keydown', (e)=>{ if(e.key==='Enter') openAt(i) });
+        el.tabIndex = 0;
+      });
+
+      prevBtn.addEventListener('click', ()=> openAt(idx-1) );
+      nextBtn.addEventListener('click', ()=> openAt(idx+1) );
+      lbClose.addEventListener('click', closeLb);
+
+      lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLb(); });
+
+      window.addEventListener('keydown', (e)=>{
+        if(lb.style.display === 'flex'){
+          if(e.key === 'Escape') closeLb();
+          if(e.key === 'ArrowLeft') openAt(idx-1);
+          if(e.key === 'ArrowRight') openAt(idx+1);
+        }
+      });
+
+      lbImg.addEventListener('error', ()=> { lbImg.alt = 'Изображение временно недоступно'; });
+
+      document.querySelectorAll('nav a').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          e.preventDefault();
+          const href = a.getAttribute('href');
+          const el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
