@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Asia Airlines — официальный сайт</title>
+
+  <!-- Шрифт -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --main:#800020;
+      --accent:#f8d210;
+      --white:#fff;
+      --muted:#f3f3f3;
+      --text:#222;
+      --trans:300ms cubic-bezier(.22,.9,.34,1);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"Poppins",sans-serif;
+      background:linear-gradient(180deg,#faf7f6 0%, #fff 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:90%;max-width:1200px;margin:0 auto}
+
+    /* ========== HEADER ========== */
+    header{
+      position:sticky;top:0;z-index:100;
+      background:linear-gradient(90deg,var(--main), #5b0018);
+      color:var(--white);
+      box-shadow:0 4px 18px rgba(0,0,0,.16);
+    }
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+    .logo{font-weight:700;font-size:1.35rem}
+    .logo span{color:var(--accent)}
+    nav ul{display:flex;gap:18px;list-style:none}
+    nav a{color:var(--white);padding:8px 6px;border-radius:8px;transition:var(--trans);font-weight:600}
+    nav a:hover{background:rgba(255,255,255,0.06); color:var(--accent)}
+    nav a.active{box-shadow:inset 0 -3px 0 var(--accent)}
+    .menu-toggle{display:none;background:transparent;border:0;color:var(--white);font-size:1.1rem}
+    @media (max-width:860px){
+      nav ul{position:fixed;right:12px;top:64px;background:rgba(128,0,32,0.98);flex-direction:column;padding:12px;border-radius:10px;display:none}
+      nav ul.open{display:flex}
+      .menu-toggle{display:block}
+    }
+
+    /* ========== HERO with animated title ========== */
+    .hero{
+      height:85vh; min-height:520px;
+      background:
+        linear-gradient(180deg, rgba(128,0,32,0.78), rgba(0,0,0,0.45)),
+        url("https://images.unsplash.com/photo-1511232696701-5ecc9ad34d7a?auto=format&fit=crop&w=1600&q=80")
+        center/cover no-repeat;
+      display:flex;align-items:center;justify-content:center;color:var(--white);
+      text-align:center;padding:0 18px;
+    }
+    .hero-card{
+      max-width:920px;background: rgba(0,0,0,0.18); padding:36px;border-radius:16px;backdrop-filter:blur(4px);
+      box-shadow:0 10px 40px rgba(0,0,0,0.45);
+    }
+
+    .hero-title {
+      font-size:2.8rem;
+      font-weight:700;
+      line-height:1.02;
+      overflow:visible;
+      display:block;
+    }
+    /* animate each word separately */
+    .hero-title .word {
+      display:inline-block;
+      opacity:0;
+      transform:translateY(30px);
+      animation:wordIn 600ms cubic-bezier(.2,.9,.3,1) forwards;
+    }
+    .hero-title .word.w1{animation-delay:120ms}
+    .hero-title .word.w2{animation-delay:360ms}
+    @keyframes wordIn{to{opacity:1;transform:translateY(0)}}
+
+    .hero-sub {
+      margin-top:12px;
+      font-size:1.05rem;
+      opacity:0;
+      transform:translateY(20px);
+      animation:subIn 650ms ease 800ms forwards;
+    }
+    @keyframes subIn{to{opacity:1;transform:translateY(0)}}
+
+    .hero-cta{margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{background:var(--accent);color:var(--main);padding:10px 18px;border-radius:10px;font-weight:700;transition:var(--trans)}
+    .btn:hover{transform:translateY(-4px)}
+
+    /* ========== GALLERY (user images) ========== */
+    .gallery{padding:50px 0;background:#fff;}
+    .gallery h2{text-align:center;color:var(--main);margin-bottom:20px}
+    .slider{max-width:1100px;margin:auto;overflow:hidden;border-radius:12px;position:relative;box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+    .slides{display:flex;transition:transform 700ms cubic-bezier(.22,.9,.34,1);will-change:transform}
+    .slide{min-width:100%;height:420px}
+    .slide img{width:100%;height:100%;object-fit:cover;display:block}
+    .btn-ctrl{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.9);border:0;padding:10px;border-radius:10px;cursor:pointer}
+    #prev{left:12px}#next{right:12px}
+
+    /* ========== ABOUT ========== */
+    .about{padding:60px 0;background:linear-gradient(180deg,#fff,#fcfbfb)}
+    .about h2{text-align:center;color:var(--main);margin-bottom:16px}
+    .about p{max-width:900px;margin:0 auto;color:#444;line-height:1.6;text-align:center}
+
+    /* ========== DESTINATIONS ========== */
+    .section{padding:60px 0}
+    .section-title{text-align:center;color:var(--main);margin-bottom:18px;font-size:1.8rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;max-width:1100px;margin:0 auto}
+    .card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(0,0,0,0.06);transition:var(--trans);overflow:hidden}
+    .card:hover{transform:translateY(-8px)}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+    .card h3{color:var(--main);margin:10px 0 6px}
+    .card p{color:#444}
+
+    /* ========== TEAM ========== */
+    .team{background:#fff}
+    .crew{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;max-width:1100px;margin:20px auto 0}
+    .crew-card{background:linear-gradient(180deg, rgba(248,210,16,0.06), rgba(255,255,255,0.02));border-radius:12px;padding:12px;text-align:center;transition:all 400ms;box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+    .crew-card img{width:110px;height:110px;border-radius:50%;object-fit:cover;border:4px solid rgba(255,255,255,0.5);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+    .crew-card h4{margin:10px 0 4px;color:var(--main)}
+    .crew-card p{font-size:.9rem;color:#444}
+    .crew-card:hover{transform:translateY(-8px);box-shadow:0 18px 50px rgba(128,0,32,0.12)}
+
+    /* ========== FOUNDER (no photo) ========== */
+    .founder{background:linear-gradient(180deg,#fff,#fcfbfb);padding:64px 0}
+    .founder .bio{max-width:1000px;margin:0 auto;background:#fff;padding:22px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.06)}
+    .founder h2{text-align:center;color:var(--main);margin-bottom:16px}
+    .founder p{color:#444;margin-bottom:12px;line-height:1.6}
+
+    /* ========== TESTIMONIALS ========== */
+    .testimonials{background:var(--muted);padding:54px 0}
+    .testimonials h2{text-align:center;color:var(--main);margin-bottom:18px}
+    .test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;max-width:1100px;margin:0 auto}
+    .testimonial{background:#fff;padding:16px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+    .testimonial p{font-style:italic}
+    .testimonial .who{margin-top:10px;font-weight:700;color:var(--main)}
+
+    /* ========== CONTACTS ========== */
+    .contacts{padding:60px 0}
+    .contacts .wrap{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
+    .contacts form{display:grid;gap:8px;margin-top:12px}
+    input,textarea{padding:10px;border-radius:8px;border:1px solid #e6e6e6}
+    .submit{background:var(--accent);color:var(--main);border:none;padding:10px 12px;border-radius:8px;font-weight:700;cursor:pointer}
+    .social-icons a{display:inline-block;margin-right:10px;transition:transform .2s}
+    .social-icons a:hover{transform:scale(1.08)}
+
+    /* ========== FOOTER ========== */
+    footer{padding:18px;text-align:center;background:linear-gradient(90deg,var(--main),#5b0018);color:white}
+    footer .socials a{margin:0 6px;display:inline-block;vertical-align:middle}
+    footer .socials a img{display:block}
+
+    @media (max-width:900px){
+      .hero-title{font-size:2.1rem}
+      .slide{height:320px}
+      .contacts .wrap{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header>
+    <div class="header-inner container">
+      <div class="logo">Asia <span>Airlines</span></div>
+
+      <nav>
+        <button class="menu-toggle" aria-label="menu" onclick="toggleMenu()">☰</button>
+        <ul id="mainNav">
+          <li><a href="#home" class="active">Главная</a></li>
+          <li><a href="#gallery">Галерея</a></li>
+          <li><a href="#about">О компании</a></li>
+          <li><a href="#destinations">Направления</a></li>
+          <li><a href="#team">Команда</a></li>
+          <li><a href="#founder">Основатель</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="home" role="region" aria-label="Главная секция">
+    <div class="hero-card container">
+      <div class="hero-title" aria-hidden="false">
+        <span class="word w1">Asia</span>
+        <span class="word w2" style="margin-left:8px">Airlines</span>
+      </div>
+      <div class="hero-sub">Открой мир с комфортом</div>
+
+      <div class="hero-cta">
+        <a class="btn" href="#destinations">Посмотреть направления</a>
+        <a class="btn" href="#contacts" style="background:transparent;border:2px solid rgba(248,210,16,0.95);color:white">Связаться</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GALLERY (user images) ========== -->
+  <section class="gallery" id="gallery">
+    <h2>Фотоальбом — наши рейсы в движении</h2>
+
+    <div class="slider" aria-roledescription="carousel" tabindex="0">
+      <div class="slides" id="slides">
+        <div class="slide"><img src="https://i.pinimg.com/736x/47/8e/39/478e39254946292b92b28eb3863a352b.jpg" alt="gallery 1"></div>
+        <div class="slide"><img src="http://img-fotki.yandex.ru/get/6435/30348152.15f/0_6d765_bfb1a107_orig" alt="gallery 2"></div>
+        <div class="slide"><img src="https://cdn.prod.www.spiegel.de/images/e972dccc-0001-0004-0000-000000546183_w1200_r1.778_fpx65.97_fpy50.jpg" alt="gallery 3"></div>
+        <div class="slide"><img src="https://i.insider.com/5b76e2be04f1622d008b52c0?width=1200&format=jpeg" alt="gallery 4"></div>
+      </div>
+
+      <button id="prev" class="btn-ctrl" aria-label="previous">‹</button>
+      <button id="next" class="btn-ctrl" aria-label="next">›</button>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="about" id="about">
+    <h2>О компании</h2>
+    <p>Asia Airlines — международная авиакомпания, предлагающая комфортные и безопасные перелёты. Наша миссия — дарить пассажирам качество обслуживания, пунктуальность и внимание к деталям на каждом этапе путешествия.</p>
+  </section>
+
+  <!-- ========== DESTINATIONS (user Bangkok & Seoul) ========== -->
+  <section class="section" id="destinations">
+    <h2 class="section-title">Популярные направления</h2>
+    <div class="grid">
+      <article class="card">
+        <img src="https://s.yimg.com/ny/api/res/1.2/VuF5hZL60AWDUYo43G8xUQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyNDI7aD04Mjg7Y2Y9d2VicA--/https://media.zenfs.com/en/the_independent_635/5dacc96dd7fa951d8b5f5ce7f98e602a" alt="Бангкок">
+        <h3>Бангкок</h3>
+        <p>Город контрастов — древние храмы, оживлённые рынки и современная архитектура.</p>
+      </article>
+
+      <article class="card">
+        <img src="https://i.pinimg.com/originals/6a/63/1d/6a631d69f5522f49d6ca4ce9eaea86c8.jpg" alt="Сеул">
+        <h3>Сеул</h3>
+        <p>Современный мегаполис, сочетающий инновации и богатую культуру.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========== TEAM: stewardesses (user images) ========== -->
+  <section class="team" id="team">
+    <div class="container">
+      <h2 class="section-title">Наша команда — стюардессы</h2>
+      <p style="text-align:center;max-width:900px;margin:8px auto 18px;color:#555">Профессиональные бортпроводницы — лицо нашей заботы о пассажирах.</p>
+
+      <div class="crew">
+        <div class="crew-card">
+          <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_68128392ebc0f6686c90cf42_6812862befd36779d267270d/scale_1200" alt="Айсулу">
+          <h4>Айсулу</h4>
+          <p>Стаж 6 лет · Гостеприимство</p>
+        </div>
+
+        <div class="crew-card">
+          <img src="https://i.pinimg.com/736x/1c/be/31/1cbe31a4faa83f07ed96ccb74964287c.jpg" alt="Нургуль">
+          <h4>Нургуль</h4>
+          <p>Стаж 4 года · Медпомощь</p>
+        </div>
+
+        <div class="crew-card">
+          <img src="https://avatars.mds.yandex.net/i?id=3f30cd1b11d016dfb5480728df56d1f9680d4c29-5493878-images-thumbs&n=13" alt="Самира">
+          <h4>Самира</h4>
+          <p>Стаж 7 лет · Клиентский сервис</p>
+        </div>
+
+        <div class="crew-card">
+          <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_6845420f9f1ff1617e037ed3_68454374129ad45762455528/scale_1200" alt="Эльмира">
+          <h4>Эльмира</h4>
+          <p>Стаж 5 лет · Безопасность</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOUNDER: Kamilya.J (year 1996) ========== -->
+  <section class="founder" id="founder">
+    <div class="container">
+      <h2>Основатель — Камила.Ж</h2>
+      <div class="bio">
+        <p><strong>Родилась в 1996 году.</strong> С юных лет Камила мечтала о полётах и новых горизонтах. Её стремление к совершенству и любовь к путешествиям вдохновили создание авиакомпании, где комфорт и забота о каждом пассажире стали главным приоритетом.</p>
+
+        <p>Камила получила образование в сфере логистики и управления транспортом. Благодаря своей энергии и настойчивости, она сумела превратить идею в современный бренд, известный качеством и безопасностью.</p>
+
+        <p>Сегодня Камила.Ж активно развивает Asia Airlines, внедряя инновации и создавая атмосферу доверия. Под её руководством компания стремится соединить людей, города и страны, делая полёты доступными и приятными.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS (8 reviews) ========== -->
+  <section class="testimonials" id="reviews">
+    <h2>Отзывы пассажиров</h2>
+    <div class="test-grid">
+      <div class="testimonial"><p>«Потрясающее обслуживание: персонал внимательный и профессиональный.»</p><div class="who">— Асем, Алматы</div></div>
+      <div class="testimonial"><p>«Удобные кресла и приятное питание — перелёт прошёл отлично.»</p><div class="who">— Дмитрий, Атырау</div></div>
+      <div class="testimonial"><p>«Быстрая регистрация и помощь при пересадке — спасибо экипажу.»</p><div class="who">— Лейла, Тараз</div></div>
+      <div class="testimonial"><p>«Доброжелательная команда и спокойная атмосфера на борту.»</p><div class="who">— Руслан, Нур-Султан</div></div>
+      <div class="testimonial"><p>«Чистота и порядок в салоне, отличное обслуживание.»</p><div class="who">— Марина, Шымкент</div></div>
+      <div class="testimonial"><p>«Полет прошло комфортно, все просьбы были учтены.»</p><div class="who">— Бахыт, Павлодар</div></div>
+      <div class="testimonial"><p>«Замечательное соотношение цены и качества.»</p><div class="who">— Гульнар, Костанай</div></div>
+      <div class="testimonial"><p>«Отличная организация рейса и вежливый персонал.»</p><div class="who">— Омар, Караганда</div></div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACTS (icons + links open in new tab) ========== -->
+  <section class="contacts" id="contacts">
+    <div class="container">
+      <h2 class="section-title">Контакты</h2>
+      <div class="wrap">
+        <div>
+          <p><strong>Контактное лицо:</strong> <span style="font-weight:700">Камила.Ж</span></p>
+          <p><strong>Email:</strong> asiaairlines@example.com</p>
+
+          <div style="margin:12px 0;" class="social-icons" aria-label="Социальные сети">
+            <!-- Instagram (gradient icon as SVG) -->
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" title="Instagram">
+              <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="false">
+                <defs>
+                  <linearGradient id="igGrad" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0" stop-color="#f58529"/>
+                    <stop offset="0.5" stop-color="#dd2a7b"/>
+                    <stop offset="1" stop-color="#8134af"/>
+                  </linearGradient>
+                </defs>
+                <rect x="4" y="4" width="40" height="40" rx="10" fill="url(#igGrad)"/>
+                <path d="M24 16.5a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15z" fill="#fff" opacity="0.95"/>
+                <circle cx="33.5" cy="14.5" r="1.9" fill="#fff" opacity="0.95"/>
+              </svg>
+            </a>
+
+            <!-- VK (blue) -->
+            <a href="https://vk.com/" target="_blank" rel="noopener noreferrer" title="VK">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="#4c75a3" xmlns="http://www.w3.org/2000/svg" aria-hidden="false">
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10 5.523 0 10-4.477 10-10 0-5.523-4.477-10-10-10zm4.65 13.57c.49.953.96 1.51 1.4 1.66.43.15.73.06.9-.14.2-.24.19-.64-.03-1.12-.25-.51-.83-1.1-1.68-1.77-.98-.77-1.54-1.33-1.69-1.7-.16-.39-.03-.63.36-.63.36 0 .82.12 1.32.36.48.23.91.33 1.28.29.41-.05.79-.3 1.15-.73.38-.45.61-1.04.7-1.77.08-.62-.02-1.09-.3-1.4C18.38 7.6 17.84 7.5 17.2 7.8c-.52.27-.99.66-1.41 1.16-.44.54-.87 1.07-1.3 1.6-.27.34-.5.53-.7.56-.27.04-.45-.05-.55-.26-.27-.47-.73-1.03-1.36-1.7C10.9 8.6 10.45 8.3 9.94 8.3c-.28 0-.52.12-.71.36-.31.38-.45.84-.42 1.38.03.77.49 1.45 1.37 2.04.88.59 1.66 1.04 2.35 1.36.45.22.74.43.86.64.12.2.13.41.04.62-.11.29-.36.5-.76.63-.74.25-1.58.23-2.53-.06a6.7 6.7 0 0 1-1.9-.98c-.5-.36-.9-.53-1.2-.53-.3 0-.52.13-.66.4-.18.35-.2.8-.06 1.36.27 1.08.9 2.04 1.88 2.88 1.05.89 2.36 1.45 3.93 1.7 1.67.27 3.14.14 4.4-.4 1.26-.53 2.21-1.4 2.85-2.6.6-1.14.82-2.39.66-3.74-.18-1.7-1-2.62-2.44-2.78-.56-.06-1.05.01-1.46.22-.44.22-.82.5-1.12.84-.31.34-.56.62-.77.84-.17.17-.31.27-.43.29-.12.03-.24.01-.37-.06-.15-.09-.3-.25-.46-.48-.17-.24-.35-.52-.56-.86-.36-.6-.77-1.13-1.23-1.6-.22-.2-.45-.36-.7-.5-.27-.16-.49-.25-.67-.25-.2 0-.38.06-.54.18-.07.05-.16.13-.28.25-.27.27-.54.6-.82 1.02-.3.47-.62.96-.95 1.47z"/>
+              </svg>
+            </a>
+
+            <!-- Facebook (dark blue) -->
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" title="Facebook">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg" aria-hidden="false">
+                <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 4.97 3.66 9.09 8.44 9.84v-6.95H8.07v-2.89h2.37V9.41c0-2.34 1.4-3.63 3.55-3.63 1.03 0 2.11.18 2.11.18v2.32h-1.19c-1.18 0-1.55.74-1.55 1.5v1.8h2.64l-.42 2.89h-2.22v6.95C18.34 21.16 22 17.04 22 12.07z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <aside style="background:linear-gradient(180deg,#fff,#fcfbfb);padding:14px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.04)">
+          <h4>Офис</h4>
+          <p>г. Астана, проспект Независимости, 12, офис 501</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER (icons) ========== -->
+  <footer>
+    <div class="container">
+      © 2025 Asia Airlines — Создатель: Камила.Ж
+      <div class="socials" style="margin-top:8px">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" title="Instagram">
+          <!-- small Instagram gradient square (png/svg inline previously used) -->
+          <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="igGrad2" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#f58529"/>
+                <stop offset="0.5" stop-color="#dd2a7b"/>
+                <stop offset="1" stop-color="#8134af"/>
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="44" height="44" rx="8" fill="url(#igGrad2)"/>
+            <path d="M24 16.5a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15z" fill="#fff" opacity="0.95"/>
+            <circle cx="33.5" cy="14.5" r="1.2" fill="#fff" opacity="0.95"/>
+          </svg>
+        </a>
+
+        <a href="https://vk.com/" target="_blank" rel="noopener noreferrer" title="VK">
+          <img src="https://cdn-icons-png.flaticon.com/512/145/145813.png" width="22" alt="VK">
+        </a>
+
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" title="Facebook">
+          <img src="https://cdn-icons-png.flaticon.com/512/145/145802.png" width="22" alt="Facebook">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS (gallery slider, menu, small interactions) ========== -->
+  <script>
+    // Mobile menu toggle
+    function toggleMenu(){
+      const nav = document.getElementById('mainNav');
+      nav.classList.toggle('open');
+    }
+
+    // Gallery slider
+    (function(){
+      const slidesEl = document.getElementById('slides');
+      const slides = slidesEl.children;
+      const prev = document.getElementById('prev');
+      const next = document.getElementById('next');
+      let index = 0;
+      const total = slides.length;
+      function update(){ slidesEl.style.transform = 'translateX(' + (-index * 100) + '%)'; }
+      next && next.addEventListener('click', ()=>{ index = (index+1)%total; update(); reset(); });
+      prev && prev.addEventListener('click', ()=>{ index = (index-1+total)%total; update(); reset(); });
+      let auto = setInterval(()=>{ index = (index+1)%total; update(); }, 4500);
+      function reset(){ clearInterval(auto); auto = setInterval(()=>{ index = (index+1)%total; update(); }, 4500); }
+      // swipe
+      let startX = null;
+      const slider = slidesEl.parentElement;
+      slider.addEventListener('touchstart', e=> startX = e.touches[0].clientX);
+      slider.addEventListener('touchend', e=>{
+        if(startX===null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        if(Math.abs(dx)>40){ if(dx<0) index=(index+1)%total; else index=(index-1+total)%total; update(); reset(); }
+        startX=null;
+      });
+      update();
+    })();
+
+    // Smooth scroll for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if(href.length>1 && href.startsWith('#')){
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if(el){
+            const top = el.getBoundingClientRect().top + window.scrollY - 68;
+            window.scrollTo({top, behavior:'smooth'});
+            document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById('mainNav').classList.remove('open');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
