@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asia Airlines — путешествуй с нами</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --main: #800020;
+  --dark: #4b0016;
+  --bg: #faf7f7;
+  --accent: #f8d210;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:#222;}
+header{
+  background:linear-gradient(90deg,var(--main),var(--dark));
+  color:#fff;position:sticky;top:0;z-index:10;
+}
+header .container{
+  max-width:1200px;margin:auto;padding:15px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{font-size:1.6rem;font-weight:700;}
+.logo span{color:var(--accent);}
+nav ul{display:flex;list-style:none;gap:20px;}
+nav a{color:#fff;text-decoration:none;transition:.3s;}
+nav a:hover{color:var(--accent);}
+.socials img{width:28px;height:28px;margin-left:8px;transition:.3s;}
+.socials img:hover{transform:scale(1.15);}
+
+/* Hero */
+.hero{
+  background:linear-gradient(rgba(128,0,32,0.6),rgba(0,0,0,0.5)),
+    url("https://i.pinimg.com/originals/b7/50/5e/b7505e89658ffb331cfc6117209a7307.jpg") center/cover no-repeat;
+  height:68vh;display:flex;justify-content:center;align-items:center;text-align:center;color:#fff;
+}
+.hero h1{font-size:3rem;}
+.hero p{font-size:1.2rem;margin-top:10px;}
+.btn{display:inline-block;margin-top:20px;padding:12px 22px;border-radius:10px;background:var(--accent);color:var(--main);font-weight:700;text-decoration:none;}
+.btn:hover{transform:translateY(-3px);}
+
+/* Video */
+#video-section{text-align:center;padding:60px 20px;background:#fff;}
+#video-section h2{color:var(--main);margin-bottom:20px;}
+.video-wrapper img{width:90%;max-width:900px;border-radius:12px;}
+
+/* Gallery */
+section{padding:60px 0;}
+.section-title{text-align:center;color:var(--main);margin-bottom:25px;}
+.gallery-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:15px;max-width:1000px;margin:auto;
+}
+.gallery-grid img{width:100%;border-radius:12px;transition:.4s;}
+.gallery-grid img:hover{transform:scale(1.05);}
+
+/* Tours */
+.tours{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;max-width:1000px;margin:auto;}
+.tour{
+  background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  overflow:hidden;transition:.3s;width:230px;
+}
+.tour:hover{transform:translateY(-5px);}
+.tour img{width:100%;height:160px;object-fit:cover;}
+.tour-info{padding:10px;}
+.tour-info h3{color:var(--main);}
+
+/* Booking */
+.booking-wrapper{display:flex;justify-content:center;align-items:center;gap:30px;flex-wrap:wrap;max-width:1000px;margin:auto;}
+.booking-form{
+  background:#fff;padding:25px;border-radius:16px;box-shadow:0 6px 20px rgba(128,0,32,0.15);
+  max-width:400px;width:100%;
+}
+.booking-form h3{color:var(--main);}
+input,select{width:100%;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #ccc;}
+.book-btn{
+  background:var(--main);color:#fff;border:none;padding:12px;width:100%;
+  border-radius:10px;font-size:1rem;margin-top:15px;cursor:pointer;transition:.3s;
+}
+.book-btn:hover{background:var(--dark);}
+.logo-box{
+  width:230px;height:230px;background:var(--main);border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:1.3rem;font-weight:600;text-align:center;
+  box-shadow:0 6px 20px rgba(0,0,0,0.1);
+  flex-direction:column;
+}
+.logo-box span{font-size:2rem;margin-top:10px;}
+
+/* Team */
+.team-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:20px;max-width:1000px;margin:auto;
+}
+.member{
+  background:#fff;text-align:center;padding:15px;border-radius:14px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);transition:.3s;
+}
+.member:hover{transform:scale(1.05);}
+.member img{width:100%;height:230px;object-fit:cover;border-radius:10px;}
+.member h4{color:var(--main);margin-top:10px;}
+
+/* Founders */
+.founders{max-width:900px;margin:auto;}
+.founder{
+  background:#fff;padding:18px;border-radius:14px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.05);margin-bottom:15px;line-height:1.5;
+}
+.founder strong{color:var(--main);}
+
+/* Reviews */
+.reviews{max-width:900px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+.review{
+  background:#fff;padding:16px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,0.07);
+  transition:transform .3s;
+}
+.review:hover{transform:scale(1.05);}
+.review p{font-style:italic;}
+.review .who{margin-top:8px;font-weight:700;color:var(--main);}
+.add-review{text-align:center;margin-top:25px;}
+.add-box{display:inline-block;background:#fff;padding:20px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,0.08);}
+.add-box input, .add-box textarea{
+  width:250px;padding:8px;margin-top:10px;border-radius:8px;border:1px solid #ccc;resize:none;
+}
+.add-box button{background:var(--main);color:#fff;border:none;padding:10px 15px;border-radius:8px;margin-top:10px;cursor:pointer;}
+
+/* Map & Footer */
+iframe.map{width:100%;height:400px;border:0;border-radius:12px;}
+footer{
+  background:linear-gradient(90deg,var(--main),var(--dark));color:#fff;text-align:center;padding:20px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">Asia <span>Airlines</span></div>
+    <nav>
+      <ul>
+        <li><a href="#home">Главная</a></li>
+        <li><a href="#video-section">Видео</a></li>
+        <li><a href="#gallery">Галерея</a></li>
+        <li><a href="#tours">Туры</a></li>
+        <li><a href="#booking">Бронирование</a></li>
+        <li><a href="#team">Команда</a></li>
+        <li><a href="#founders">Основатели</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+      </ul>
+    </nav>
+    <div class="socials">
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" title="Telegram"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" title="WhatsApp"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" title="Instagram"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/145/145813.png" title="VK"></a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div>
+    <h1>Asia Airlines</h1>
+    <p>Путешествия, которые вдохновляют</p>
+    <a href="#booking" class="btn">✈️ Забронировать билет</a>
+  </div>
+</section>
+
+<!-- Видео -->
+<section id="video-section">
+  <h2>Наслаждайтесь атмосферой путешествий</h2>
+  <div class="video-wrapper">
+    <img src="https://us.v-cdn.net/5021879/uploads/editor/ir/5uapco8xomd0.gif" alt="Видео путешествий">
+  </div>
+</section>
+
+<!-- Галерея -->
+<section id="gallery">
+  <h2 class="section-title">Фотогалерея</h2>
+  <div class="gallery-grid">
+    <img src="https://i.pinimg.com/736x/46/db/d7/46dbd7f9c2717ac0d3a2881dbbba63cf.jpg">
+    <img src="https://kakogo-chisla.ru/wp-content/uploads/2022/04/Pochemu-vazhen-Mezhdunarodnyj-den-grazhdanskoj-aviatsii-2048x1152.jpg">
+    <img src="https://avatars.mds.yandex.net/i?id=282095a10a0d5afc83bf09081061ae9f_l-5209846-images-thumbs&n=13">
+    <img src="https://avatars.mds.yandex.net/i?id=db6dfabfbab4867305a97bdc53860a92_l-6950859-images-thumbs&n=13">
+    <img src="https://liter.kz/cache/imagine/1200/uploads/news/2020/03/18/air-1.jpg">
+    <img src="https://media-cdn.tripadvisor.com/media/photo-s/11/e3/5e/4f/767.jpg">
+  </div>
+</section>
+
+<!-- Горячие туры -->
+<section id="tours">
+  <h2 class="section-title">Горячие туры</h2>
+  <div class="tours">
+    <div class="tour"><img src="https://avatars.mds.yandex.net/i?id=4964d506d31c241efd392c895d5e1828_l-9245471-images-thumbs&n=13"><div class="tour-info"><h3>Сеул</h3><p>Современный мегаполис с уникальной культурой.</p></div></div>
+    <div class="tour"><img src="https://avatars.mds.yandex.net/i?id=0d4756581f229f5825ba4040cae80287_l-4402845-images-thumbs&n=13"><div class="tour-info"><h3>Бангкок</h3><p>Экзотика и древние храмы.</p></div></div>
+    <div class="tour"><img src="https://cdn.culture.ru/images/16445445-ffab-500b-852d-561f37f40877"><div class="tour-info"><h3>Япония</h3><p>Страна технологий и традиций.</p></div></div>
+    <div class="tour"><img src="https://i.pinimg.com/736x/56/4f/2d/564f2db1fd6f7b4a00d2130a002ed1e5.jpg"><div class="tour-info"><h3>Тайланд</h3><p>Райские пляжи и море.</p></div></div>
+  </div>
+</section>
+
+<!-- Бронирование -->
+<section id="booking">
+  <h2 class="section-title">Бронирование билета</h2>
+  <div class="booking-wrapper">
+    <div class="booking-form">
+      <h3>Заполните форму</h3>
+      <input type="text" placeholder="Имя">
+      <input type="email" placeholder="Email">
+      <select><option>Выберите направление</option><option>Сеул</option><option>Бангкок</option><option>Япония</option><option>Тайланд</option></select>
+      <input type="date">
+      <button class="book-btn">✈️ Забронировать</button>
+    </div>
+    <div class="logo-box">
+      Asia Airlines <span>✈️</span>
+    </div>
+  </div>
+</section>
+
+<!-- Команда -->
+<section id="team">
+  <h2 class="section-title">Наша команда</h2>
+  <div class="team-grid">
+    <div class="member"><img src="https://kubnews.ru/upload/resize_cache/iblock/882/1200_800_2/6rk29dt7951asmo82ifjzhdsapswjw80.jpg"><h4>Нургуль</h4><p>Менеджер по клиентам</p></div>
+    <div class="member"><img src="https://avatars.mds.yandex.net/get-shedevrum/12370558/0000aa7232d411eea5441282c0ba7723/orig"><h4>Алина</h4><p>Руководитель отдела продаж</p></div>
+    <div class="member"><img src="https://i2.wp.com/assets.paramountbusinessjets.com/media/uploaded-files/Pilot-salary-04.jpg"><h4>Али</h4><p>Главный пилот</p></div>
+    <div class="member"><img src="https://i.pinimg.com/736x/29/68/00/296800cff9e22e38124f0b4749ac209e.jpg"><h4>Камила</h4><p>Директор компании</p></div>
+  </div>
+</section>
+
+<!-- Основатели -->
+<section id="founders">
+  <h2 class="section-title">Основатели</h2>
+  <div class="founders">
+    <div class="founder">
+      <strong>Камила (1996)</strong> — вдохновитель и идейный лидер Asia Airlines. Она начала карьеру с мечты о компании, которая сделает путешествия простыми, безопасными и приятными. Благодаря её дальновидности компания стала лидером на рынке авиаперевозок и внедрила систему комфортного онлайн-сервиса для клиентов по всему миру.
+    </div>
+    <div class="founder">
+      <strong>Дулат (1995)</strong> — сооснователь и технологический стратег. Его инженерный подход и внимание к деталям помогли создать инновационную систему бронирования и контроля качества. Он отвечает за технологическую сторону компании и развитие цифровых решений, которые делают Asia Airlines современной и надёжной авиакомпанией.
+    </div>
+  </div>
+</section>
+
+<!-- Отзывы -->
+<section id="reviews">
+  <h2 class="section-title">Отзывы наших клиентов</h2>
+  <div class="reviews" id="reviewList">
+    <div class="review"><p>"Полёт прошёл отлично, сервис на высшем уровне!"</p><div class="who">— Анна</div></div>
+    <div class="review"><p>"Отличная компания! Всё вовремя и без проблем."</p><div class="who">— Рустем</div></div>
+    <div class="review"><p>"Очень удобное бронирование и дружелюбный персонал."</p><div class="who">— Алия</div></div>
+    <div class="review"><p>"Брали тур в Японию — всё просто супер!"</p><div class="who">— Кайрат</div></div>
+    <div class="review"><p>"Asia Airlines — теперь мой выбор №1!"</p><div class="who">— Тимур</div></div>
+    <div class="review"><p>"Полетели с детьми — всё идеально, спасибо Asia Airlines!"</p><div class="who">— Мария</div></div>
+  </div>
+
+  <div class="add-review">
+    <div class="add-box">
+      <input type="text" id="reviewName" placeholder="Ваше имя"><br>
+      <textarea id="newReview" placeholder="Ваш отзыв..."></textarea><br>
+      <button onclick="addReview()">Добавить отзыв</button>
+    </div>
+  </div>
+</section>
+
+<!-- Карта -->
+<section id="contacts">
+  <h2 class="section-title">Наш офис</h2>
+  <iframe class="map"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2243.976656454073!2d71.42781787719715!3d51.12843337173098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4245812c4d28dc37%3A0x4f3caa1ab52b3c0a!2z0YPQuy4g0J3QtdC_0YDQsNC90LjRjywgMTIsINCi0LDRgNGF0L7QtNC90YHQutCwLCDQmtC40LXQsiwgMDIwMDAw!5e0!3m2!1sru!2skz!4v1696666666666"
+    allowfullscreen=""></iframe>
+</section>
+
+<footer>
+  <p>© 2025 Asia Airlines | Все права защищены</p>
+</footer>
+
+<script>
+function addReview() {
+  const name = document.getElementById('reviewName').value.trim();
+  const text = document.getElementById('newReview').value.trim();
+  if (!name || !text) return alert("Введите имя и отзыв!");
+  const div = document.createElement('div');
+  div.className = 'review';
+  div.innerHTML = <p>"${text}"</p><div class='who'>— ${name}</div>;
+  document.getElementById('reviewList').appendChild(div);
+  document.getElementById('reviewName').value = '';
+  document.getElementById('newReview').value = '';
+}
+</script>
+</body>
+</html>
